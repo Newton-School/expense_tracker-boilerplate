@@ -2,17 +2,7 @@ const Expense = require('../models/expenseModel');
 
 exports.addExpense = async (req, res) => {
   try {
-    const { amount, category, description } = req.body;
-
-    const userId = req.user.userId;
-
-    const newExpense = await Expense.create({
-      amount,
-      category,
-      description,
-      user: userId,
-    });
-
+    //Write a code here for addExpense
     res
       .status(201)
       .json({ message: 'Expense added successfully', expense: newExpense });
@@ -24,10 +14,7 @@ exports.addExpense = async (req, res) => {
 
 exports.viewExpenses = async (req, res) => {
   try {
-    const userId = req.user.userId;
-
-    // Retrieve all expenses associated with the authenticated user
-    const expenses = await Expense.find({ user: userId });
+    //Write a code here
 
     res.json({ message: 'View expenses', expenses });
   } catch (error) {
@@ -39,22 +26,7 @@ exports.viewExpenses = async (req, res) => {
 // Update Expense
 exports.updateExpense = async (req, res) => {
   try {
-    const userId = req.user.userId;
-    const expenseId = req.params.expenseId;
-    const { amount, category, description } = req.body;
-
-    // Check if the expense belongs to the authenticated user
-    const expense = await Expense.findOne({ _id: expenseId, user: userId });
-    if (!expense) {
-      return res.status(404).json({ message: 'Expense not found' });
-    }
-
-    // Update expense details
-    expense.amount = amount;
-    expense.category = category;
-    expense.description = description;
-
-    await expense.save();
+    // Write a code here
 
     res.json({ message: 'Expense updated successfully', expense });
   } catch (error) {
@@ -66,17 +38,7 @@ exports.updateExpense = async (req, res) => {
 // Delete Expense
 exports.deleteExpense = async (req, res) => {
   try {
-    const userId = req.user.userId;
-    const expenseId = req.params.expenseId;
-
-    // Check if the expense belongs to the authenticated user
-    const expense = await Expense.findOne({ _id: expenseId, user: userId });
-    if (!expense) {
-      return res.status(404).json({ message: 'Expense not found' });
-    }
-
-    // Remove the expense
-    await expense.remove();
+    //Write a code here
 
     res.json({ message: 'Expense deleted successfully' });
   } catch (error) {
